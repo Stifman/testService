@@ -1,8 +1,9 @@
-package com.example.DAO;
+package com.example.dao;
 
-import com.example.Data.User;
+import com.example.data.User;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
+import org.springframework.stereotype.Repository;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,9 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by степан on 10.06.2016.
- */
+
+@Repository
 public class UserDAO {
 
     private static final String url = "jdbc:mysql://localhost:3306/db";
@@ -26,7 +26,7 @@ public class UserDAO {
 
     public List<User> getAllUsers() {
         String query = "SELECT u.iduser, u.name, u.secondname, u.email, r.role FROM user u INNER JOIN roles r ON u.fk = r.idroles ";
-        User user = new User();
+        User user;
         List<User> users = new ArrayList<>();
         try {
             con = (Connection) DriverManager.getConnection(url, userName, password);
@@ -38,12 +38,13 @@ public class UserDAO {
             rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                user = new User();
-                user.setId(rs.getInt(1));
-                user.setName(rs.getString(2));
-                user.setSecondname(rs.getString(3));
-                user.setEmail(rs.getString(4));
-                user.setRole(rs.getString(5));
+                user = new User.Builder()
+                        .id(rs.getInt(1))
+                        .name(rs.getString(2))
+                        .secondname(rs.getString(3))
+                        .email(rs.getString(4))
+                        .role(rs.getString(5)).build();
+
                 users.add(user);
 
 
