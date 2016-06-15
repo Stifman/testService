@@ -1,79 +1,73 @@
 package com.example.data;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user")
 public class User {
-    private int id;
+
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Column(length = 8, nullable = false)
+    private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String secondname;
+
+    @Column
     private String email;
-    private String role;
 
-    public User(){}
 
-    private User(Builder builder) {
-        id = builder.id;
-        name = builder.name;
-        secondname = builder.secondname;
-        email = builder.email;
-        role = builder.role;
+    @ManyToOne
+    @JoinColumn(name = "fk")
+    private Role role;
+
+    public User() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getSecondname() {
         return secondname;
+    }
+
+    public void setSecondname(String secondname) {
+        this.secondname = secondname;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getRole() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Role getRole() {
         return role;
     }
 
-    public static final class Builder {
-        private int id;
-        private String name;
-        private String secondname;
-        private String email;
-        private String role;
-
-        public Builder() {
-        }
-
-        public Builder id(int val) {
-            id = val;
-            return this;
-        }
-
-        public Builder name(String val) {
-            name = val;
-            return this;
-        }
-
-        public Builder secondname(String val) {
-            secondname = val;
-            return this;
-        }
-
-        public Builder email(String val) {
-            email = val;
-            return this;
-        }
-
-        public Builder role(String val) {
-            role = val;
-            return this;
-        }
-
-        public User build() {
-            return new User(this);
-        }
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

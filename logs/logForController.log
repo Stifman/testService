@@ -1,0 +1,8 @@
+2016-06-15 19:44:00,492 INFO c.e.c.UserController [http-nio-8080-exec-1] INFO***
+2016-06-15 19:44:00,497 DEBUG c.e.c.UserController [http-nio-8080-exec-1] DEBAG***
+2016-06-15 19:44:00,497 ERROR c.e.c.UserController [http-nio-8080-exec-1] ERROR***
+2016-06-15 19:44:00,499 FATAL c.e.c.UserController [http-nio-8080-exec-1] FATAL***
+2016-06-15 19:50:19,834 INFO c.e.c.UserController [http-nio-8080-exec-1] INFO***
+2016-06-15 19:50:19,838 DEBUG c.e.c.UserController [http-nio-8080-exec-1] DEBAG***
+2016-06-15 19:50:19,838 ERROR c.e.c.UserController [http-nio-8080-exec-1] ERROR***
+2016-06-15 19:50:19,839 FATAL c.e.c.UserController [http-nio-8080-exec-1] FATAL***

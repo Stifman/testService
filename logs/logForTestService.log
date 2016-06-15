@@ -1,0 +1,8 @@
+2016-06-15 19:44:00,520 INFO c.e.s.i.UserServiceImpl [http-nio-8080-exec-1] INFO***Service
+2016-06-15 19:44:00,521 DEBUG c.e.s.i.UserServiceImpl [http-nio-8080-exec-1] DEBAG***Service
+2016-06-15 19:44:00,521 ERROR c.e.s.i.UserServiceImpl [http-nio-8080-exec-1] ERROR***Service
+2016-06-15 19:44:00,521 FATAL c.e.s.i.UserServiceImpl [http-nio-8080-exec-1] FATAL***Service
+2016-06-15 19:50:19,860 INFO c.e.s.i.UserServiceImpl [http-nio-8080-exec-1] INFO***Service
+2016-06-15 19:50:19,861 DEBUG c.e.s.i.UserServiceImpl [http-nio-8080-exec-1] DEBAG***Service
+2016-06-15 19:50:19,862 ERROR c.e.s.i.UserServiceImpl [http-nio-8080-exec-1] ERROR***Service
+2016-06-15 19:50:19,862 FATAL c.e.s.i.UserServiceImpl [http-nio-8080-exec-1] FATAL***Service
