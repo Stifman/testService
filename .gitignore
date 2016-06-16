@@ -1,0 +1,8 @@
+*.orig
+/out/*
+/.gradle/*
+/.idea/*
+/.mvn/*
+/gradle/*
+/logs/*
+/build/*
