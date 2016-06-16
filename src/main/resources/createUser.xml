@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
+    <changeSet id="1432" author="alewa">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists schemaName="db" tableName="T_USER"/>
+            </not>
+        </preConditions>
 
-    <changeSet id="11111" author="bobs">
-
-        <!--<dropTable tableName="user2"></dropTable>-->
-        <createTable tableName="user2">
-            <column name="id" type="BIGINT">
+        <createTable tableName="T_USER">
+            <column name="F_ID" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(50)">
-                <constraints nullable="false"/>
+            <column name="F_NAME" type="varchar(50)">
+                <constraints nullable="true"/>
             </column>
-            <column name="secondname" type="varchar(50)">
-                <constraints nullable="false"/>
+            <column name="F_SECOND_NAME" type="varchar(50)">
+                <constraints nullable="true"/>
             </column>
-            <column name="email" type="varchar(50)">
-                <constraints nullable="false"/>
+            <column name="F_EMAIL" type="varchar(50)">
+                <constraints nullable="true"/>
             </column>
-            <column name="fk" type="BIGINT">
-                <constraints nullable="false"/>
+            <column name="F_ROLE" type="varchar(50)">
+                <constraints nullable="true"/>
             </column>
-
         </createTable>
-        <addAutoIncrement tableName="user2" columnName="id" columnDataType="BIGINT" incrementBy="1"/>
+        <addAutoIncrement tableName="T_USER" columnName="F_ID" columnDataType="BIGINT" incrementBy="1"/>
 
-        <!--
-        <addForeignKeyConstraint baseColumnNames="fk"
-                                 baseTableName="user2"
-                                 constraintName="fk"
-                                 referencedColumnNames="id"
-                                 referencedTableName="roles2"/>
-
-
-
-
-                                 -->
-
+        <insert tableName="T_USER">
+            <column name="F_NAME">stepan</column>
+            <column name="F_SECOND_NAME">Korchevskij</column>
+            <column name="F_EMAIL">korstepan@yandex.by</column>
+            <column name="F_ROLE">guest</column>
+        </insert>
+        <insert tableName="T_USER">
+            <column name="F_NAME">pavel</column>
+            <column name="F_SECOND_NAME">korchevskij</column>
+            <column name="F_EMAIL">pasha@yandex.by</column>
+            <column name="F_ROLE">admin</column>
+        </insert>
 
         <rollback>
-            DELETE TABLE user2
+            DELETE TABLE T_USER
         </rollback>
 
     </changeSet>
-
 </databaseChangeLog>

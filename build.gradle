@@ -31,16 +31,18 @@ repositories {
 
 dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: mysqlConnectorJavaVersion
+
+
     compile('org.springframework.boot:spring-boot-starter-data-rest')
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    //compile 'org.springframework.data:spring-data-jpa:1.10.1.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.1.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springBootVersion
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4jCoreVersion
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: log4jApiVersion
 
     compile group: 'org.liquibase', name: 'liquibase-core', version: liquibaseCoreVersion
-
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4jCoreVersion
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: log4jCoreVersion
-
-
+    compile (group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: springBootVersion) {
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+    }
 }
+
 

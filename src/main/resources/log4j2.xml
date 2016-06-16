@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration>
+<Configuration >
     <Appenders>
 
-        <RollingFile name="logForTestService" fileName="logs/logForTestService.log"
-                     filePattern="logs/$${date:yyyy-MM}/logForTestService-%d{MM-dd-yyyy}-%i.log.gz">
+        <RollingFile name="ErrorLog" fileName="logs/ErrorLog.log"
+                     filePattern="logs/$${date:yyyy-MM}/ErrorLog-%d{MM-dd-yyyy}-%i.log.gz">
+
             <PatternLayout>
                 <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
             </PatternLayout>
+
             <Policies>
-                <SizeBasedTriggeringPolicy size="10 KB"/>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB"/>
             </Policies>
+
         </RollingFile>
 
+        <RollingFile name="InfoLog" fileName="logs/InfoLog.log"
+                     filePattern="logs/$${date:yyyy-MM}/InfoLog-%d{MM-dd-yyyy}-%i.log.gz">
 
-        <RollingFile name="logForController" fileName="logs/logForController.log"
-                     filePattern="logs/$${date:yyyy-MM}/logForController-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout>
                 <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
             </PatternLayout>
+
             <Policies>
-                <SizeBasedTriggeringPolicy size="10 KB"/>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB"/>
             </Policies>
+
         </RollingFile>
 
-
-        <Console name="STDOUT" target="SYSTEM_OUT">
+        <Console name="STDOUT" target="SYSTEM_OUT" >
             <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
         </Console>
     </Appenders>
+
     <Loggers>
-        <Logger name="com.example.services.impl.UserServiceImpl" level="trace">
-            <AppenderRef ref="logForTestService"/>
-        </Logger>
-        <Logger name="com.example.controller.UserController" level="trace">
-            <AppenderRef ref="logForController"/>
-        </Logger>
-
-        <Root level="error">
-            <AppenderRef ref="STDOUT"/>
+        <Root level="info">
+            <AppenderRef ref="STDOUT" level="info"/>
+            <AppenderRef ref="InfoLog" level="info"/>
+            <AppenderRef ref="ErrorLog" level="error"/>
         </Root>
-
     </Loggers>
 </Configuration>

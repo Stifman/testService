@@ -5,31 +5,29 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "T_USER")
 public class User {
 
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(length = 8, nullable = false)
+    @Column(name="F_ID", nullable = false)
     private Long id;
 
-    @Column
+    @Column(name="F_NAME")
     private String name;
 
-    @Column(name = "SECONDNAME")
-    private String secondname;
+    @Column(name = "F_SECOND_NAME")
+    private String secondName;
 
-    @Column
+    @Column(name="F_EMAIL")
     private String email;
 
 
-    @ManyToOne
-    @JoinColumn(name = "fk")
-    private Role role;
+    @Column(name = "F_ROLE")
+    private String role;
 
-    public User() {
-    }
+    public User(){}
 
     public Long getId() {
         return id;
@@ -47,12 +45,12 @@ public class User {
         this.name = name;
     }
 
-    public String getSecondname() {
-        return secondname;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setSecondname(String secondname) {
-        this.secondname = secondname;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public String getEmail() {
@@ -63,11 +61,11 @@ public class User {
         this.email = email;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

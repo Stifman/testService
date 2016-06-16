@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.data.User;
+import com.example.repository.model.User;
 import com.example.services.UserService;
 import com.example.services.dto.UserDto;
 import org.apache.logging.log4j.LogManager;
@@ -16,15 +16,16 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping(value = "/api/users", produces= MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    Logger log = LogManager.getLogger(UserController.class.getName());
+    public static final Logger log = LogManager.getLogger(UserController.class.getName());
 
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET)
     public List<UserDto> getAllUsers() {
         for(int i = 0; i < 1; i++) {
             log.info("INFO***");
@@ -37,26 +38,26 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     ResponseEntity<UserDto> findUser(@PathVariable("id") Long id) throws SQLException {
 
         return new ResponseEntity<UserDto>(userService.findById(id), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/user/", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody UserDto user) {
         userService.addUser(user);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody UserDto user) {
 
         userService.editUser(user);//id???
         return new ResponseEntity<User>(HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) throws SQLException {
         userService.deleteUser(id);
         return new ResponseEntity<User>(HttpStatus.ACCEPTED);

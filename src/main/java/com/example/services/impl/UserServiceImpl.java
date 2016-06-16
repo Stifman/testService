@@ -1,10 +1,10 @@
 package com.example.services.impl;
 
-import com.example.data.User;
-import com.example.data.repository.UserRepository;
+import com.example.repository.UserRepository;
+import com.example.repository.model.User;
 import com.example.services.UserService;
 import com.example.services.dto.UserDto;
-import com.example.services.dto.mapping.MappingImpl;
+import com.example.services.utils.MappingModelAndDto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     private Logger log = LogManager.getLogger(UserServiceImpl.class.getName());
-    private MappingImpl mapping = new MappingImpl();
+    private MappingModelAndDto mapping = new MappingModelAndDto();
 
     @Override
     @Transactional
