@@ -11,6 +11,8 @@ public class UserDto {
 
     private String role;
 
+    public UserDto(){}
+
     public Long getId() {
         return id;
     }

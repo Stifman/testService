@@ -1,4 +1,4 @@
-package com.example.services.utils;
+package com.example.services.utils.mapping;
 
 import com.example.repository.model.User;
 import com.example.services.dto.UserDto;

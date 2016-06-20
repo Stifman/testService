@@ -16,51 +16,44 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api/users", produces= MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/users", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    public static final Logger log = LogManager.getLogger(UserController.class.getName());
+    public static final Logger LOGGER = LogManager.getLogger(UserController.class.getName());
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<UserDto> getAllUsers() {
-        for(int i = 0; i < 1; i++) {
-            log.info("INFO***");
-            log.debug("DEBAG***");
-            log.error("ERROR***");
-            log.fatal("FATAL***");
-
-        }
-
-        return userService.getAllUsers();
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    ResponseEntity<UserDto> findUser(@PathVariable("id") Long id) throws SQLException {
+    public ResponseEntity<UserDto> findUser(@PathVariable("id") Long id) throws SQLException {
 
-        return new ResponseEntity<UserDto>(userService.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@RequestBody UserDto user) {
         userService.addUser(user);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<User> updateUser(@PathVariable("id") int id, @RequestBody UserDto user) {
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody UserDto user) {
 
-        userService.editUser(user);//id???
-        return new ResponseEntity<User>(HttpStatus.ACCEPTED);
+
+        userService.editUser(id, user);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) throws SQLException {
         userService.deleteUser(id);
-        return new ResponseEntity<User>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
 }
